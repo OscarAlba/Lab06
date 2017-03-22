@@ -4,8 +4,47 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper">
+    
+    <resultMap type='ItemRentado' id='ItemRentadoResult'>
+        <id property='id' column='id'/>
+        <result property='fechainiciorenta' column='fechainiciorenta'/>
+        <result property='fechafinrenta' column='fechafinrenta'/> 
+        <association property="item" javaType="Item" columnPrefix='I_' resultMap='ItemResult'></association>      
+    </resultMap>
 
+    <resultMap type='Item' id='ItemResult'>
+        <id property='id' column='id'/>
+        <result property='nombre' column='nombre'/>
+        <result property='descripcion' column='descripcion'/>
+        <result property='fechalanzamiento' column='fechalanzamiento'/>
+        <result property='tarifaxdia' column='tarifaxdia'/>
+        <result property='formatorenta' column='formatorenta'/>
+        <result property='genero' column='genero'/>
+        <association property="tipo" javaType="TipoItem" columnPrefix='TI_' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult'></association>      
+    </resultMap>
+    
+    <insert parameterType="map" id="insertarItem" >
+            insert into VI_ITEMS  (id,nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,TIPOITEM_id) values (#{item.id},#{item.nombre},#{item.descripcion},#{item.fechalanzamiento},#{item.tarifaxdia},#{item.formatorenta},#{item.genero},#{item.TIPOITEM_id});
+    </insert>
+    
+    <select parameterType="map" id="consultarItem" resultMap="ItemResult">
+        select 
+        
+        i.id as I_TI_id,
+        i.nombre as I_TI_nombre,
+        i.descripcion as I_TI_descripcion,
+        i.fechalanzamiento as I_TI_fechalanzamiento,
+        i.tarifaxdia as I_TI_tarifaxdia,
+        i.formatorenta as I_TI_formatorenta,
+        i.genero as I_TI_genero,    
+            
+        ti.id as TI_id,
+        ti.descripcion as TI_descripcion 
 
+        FROM VI_ITEMS as i 
+        left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id  
+        WHERE i.id=#{idItem} and ti.id=i.TIPOITEM_id
+    </select>
     
     
 </mapper>

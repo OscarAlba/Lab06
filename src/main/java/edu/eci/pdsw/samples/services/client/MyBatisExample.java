@@ -18,9 +18,11 @@ package edu.eci.pdsw.samples.services.client;
 
 
 
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -66,12 +68,15 @@ public class MyBatisExample {
         //Crear el mapper y usarlo: 
         //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
         //cm...
-        
-        
-        
+        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        ItemMapper im=sqlss.getMapper(ItemMapper.class);
+        System.out.println(cm.consultarClientes());
+        System.out.println(cm.getCliente(1026585667));
+        //cm.agregarItemRentadoACliente(1026585665,6,java.sql.Date.valueOf(LocalDate.now()),java.sql.Date.valueOf(LocalDate.now()));
+        // ya agregado un item no se puede volver agregar porque esuna clave unica.
+        System.out.println(im.consultarItem(0));
+        System.out.println(cm.getCliente(1026585664));
         sqlss.commit();
-        
-        
         sqlss.close();
 
         
