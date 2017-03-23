@@ -74,7 +74,7 @@ public class MyBatisExample {
         System.out.println(cm.getCliente(1026585667));
         //cm.agregarItemRentadoACliente(1026585665,6,java.sql.Date.valueOf(LocalDate.now()),java.sql.Date.valueOf(LocalDate.now()));
         // ya agregado un item no se puede volver agregar porque esuna clave unica.
-        System.out.println(im.consultarItem(0));
+        System.out.println(im.consultarItem(5));
         System.out.println(cm.getCliente(1026585664));
         sqlss.commit();
         sqlss.close();

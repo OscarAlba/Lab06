@@ -16,9 +16,9 @@
         <id property='id' column='id'/>
         <result property='nombre' column='nombre'/>
         <result property='descripcion' column='descripcion'/>
-        <result property='fechalanzamiento' column='fechalanzamiento'/>
-        <result property='tarifaxdia' column='tarifaxdia'/>
-        <result property='formatorenta' column='formatorenta'/>
+        <result property='fechaLanzamiento' column='fechaLanzamiento'/>
+        <result property='tarifaxDia' column='tarifaxdia'/>
+        <result property='formatoRenta' column='formatorenta'/>
         <result property='genero' column='genero'/>
         <association property="tipo" javaType="TipoItem" columnPrefix='TI_' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult'></association>      
     </resultMap>
@@ -30,20 +30,20 @@
     <select parameterType="map" id="consultarItem" resultMap="ItemResult">
         select 
         
-        i.id as I_TI_id,
-        i.nombre as I_TI_nombre,
-        i.descripcion as I_TI_descripcion,
-        i.fechalanzamiento as I_TI_fechalanzamiento,
-        i.tarifaxdia as I_TI_tarifaxdia,
-        i.formatorenta as I_TI_formatorenta,
-        i.genero as I_TI_genero,    
+        i.id ,
+        i.nombre ,
+        i.descripcion ,
+        i.fechaLanzamiento,
+        i.tarifaxdia ,
+        i.formatorenta,
+        i.genero,    
             
         ti.id as TI_id,
         ti.descripcion as TI_descripcion 
 
         FROM VI_ITEMS as i 
         left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id  
-        WHERE i.id=#{idItem} and ti.id=i.TIPOITEM_id
+        WHERE i.id=#{idItem};
     </select>
     
     
