@@ -14,21 +14,21 @@
         c.direccion,
         c.email,
         c.vetado,
-    
+        
         ir.id as IR_id,
         ir.fechainiciorenta as IR_fechainiciorenta,
         ir.fechafinrenta as IR_fechafinrenta,
     
-        i.id as I_id,
-        i.nombre as I_nombre,
-        i.descripcion as I_descripcion,
-        i.fechalanzamiento as I_fechaLanzamiento,
-        i.tarifaxdia as I_tarifaxdia,
-        i.formatorenta as I_formatorenta,
-        i.genero as I_genero,    
-            
-        ti.id as TI_id,
-        ti.descripcion as TI_descripcion 
+        i.id as IR_I_id,
+        i.nombre as IR_I_nombre,
+        i.descripcion as IR_I_descripcion,
+        i.fechaLanzamiento as IR_I_fechaLanzamiento,
+        i.tarifaxdia as IR_I_tarifaxdia,
+        i.formatorenta as IR_I_formatorenta,
+        i.genero as IR_I_genero,        
+         
+        ti.id as IR_I_TI_id,
+        ti.descripcion as IR_I_TI_descripcion 
 
         FROM VI_CLIENTES as c 
         left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
@@ -50,22 +50,22 @@
         ir.fechainiciorenta as IR_fechainiciorenta,
         ir.fechafinrenta as IR_fechafinrenta,
     
-        i.id as I_id,
-        i.nombre as I_nombre,
-        i.descripcion as I_descripcion,
-        i.fechaLanzamiento as I_fechaLanzamiento,
-        i.tarifaxdia as I_tarifaxdia,
-        i.formatorenta as I_formatorenta,
-        i.genero as I_genero,        
+        i.id as IR_I_id,
+        i.nombre as IR_I_nombre,
+        i.descripcion as IR_I_descripcion,
+        i.fechaLanzamiento as IR_I_fechaLanzamiento,
+        i.tarifaxdia as IR_I_tarifaxdia,
+        i.formatorenta as IR_I_formatorenta,
+        i.genero as IR_I_genero,        
          
-        ti.id as TI_id,
-        ti.descripcion as TI_descripcion 
+        ti.id as IR_I_TI_id,
+        ti.descripcion as IR_I_TI_descripcion 
 
     
         FROM VI_CLIENTES as c 
-        left join VI_ITEMRENTADO as ir on c.documento=ir.ITEMS_id
-        left join VI_ITEMS as i on ir.ITEMS_id=i.id
-        left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+        left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+        left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+        left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
         WHERE c.documento=#{idcli};
     
      </select>

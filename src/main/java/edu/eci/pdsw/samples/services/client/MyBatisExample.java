@@ -19,10 +19,13 @@ package edu.eci.pdsw.samples.services.client;
 
 
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.*;
+import edu.eci.pdsw.samples.entities.Item;
+import edu.eci.pdsw.samples.entities.TipoItem;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -72,10 +75,16 @@ public class MyBatisExample {
         ItemMapper im=sqlss.getMapper(ItemMapper.class);
         System.out.println(cm.consultarClientes());
         System.out.println(cm.getCliente(1026585667));
+        //Se va a agregar un item rentado  el item con id="6"
         //cm.agregarItemRentadoACliente(1026585665,6,java.sql.Date.valueOf(LocalDate.now()),java.sql.Date.valueOf(LocalDate.now()));
-        // ya agregado un item no se puede volver agregar porque esuna clave unica.
+        //ya agregado un item no se puede volver agregar con el mismo identificador porque es una clave unica.
+        System.out.println(cm.getCliente(1026585667));
         System.out.println(im.consultarItem(5));
-        System.out.println(cm.getCliente(1026585664));
+        //Se va a agregar un nuevo item llamado "Los reyes"
+        //Item i = new Item(new TipoItem(4,"Novela"), 22, "Los reyes", "Novela*c", java.sql.Date.valueOf(LocalDate.now()), 1000,"Diario", "Novela");
+        //im.insertarItem(i);
+        System.out.println(im.consultarItem(22));
+        //ya agregado un item no se puede volver agregar con la mismo idenificador porque es una clave primaria.
         sqlss.commit();
         sqlss.close();
 

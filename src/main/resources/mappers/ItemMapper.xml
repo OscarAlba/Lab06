@@ -24,7 +24,8 @@
     </resultMap>
     
     <insert parameterType="map" id="insertarItem" >
-            insert into VI_ITEMS  (id,nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,TIPOITEM_id) values (#{item.id},#{item.nombre},#{item.descripcion},#{item.fechalanzamiento},#{item.tarifaxdia},#{item.formatorenta},#{item.genero},#{item.TIPOITEM_id});
+        insert into VI_ITEMS  (id,nombre,descripcion,fechaLanzamiento,tarifaxDia,formatoRenta,genero,TIPOITEM_id) 
+        values (#{item.id},#{item.nombre},#{item.descripcion},#{item.fechaLanzamiento},#{item.tarifaxDia},#{item.formatoRenta},#{item.genero},#{item.tipo.id});
     </insert>
     
     <select parameterType="map" id="consultarItem" resultMap="ItemResult">
